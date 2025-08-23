@@ -19,7 +19,8 @@
       "Bash(./build.bat)",
       "Bash(del:*)",
       "Bash(davajava.bat)",
-      "Bash(jar:*)"
+      "Bash(jar:*)",
+      "Bash(copy targetcode-migrator-1.0.0.jar davajava-migrator.jar)"
     ],
     "deny": [],
     "ask": [],

@@ -8,6 +8,15 @@ import com.davajava.migrator.core.ast.ProgramNode;
 import com.davajava.migrator.core.ast.FunctionDeclarationNode;
 import com.davajava.migrator.core.ast.ParameterNode;
 import com.davajava.migrator.core.ast.ClassDeclarationNode;
+import com.davajava.migrator.core.ast.VariableDeclarationNode;
+import com.davajava.migrator.core.ast.BlockStatementNode;
+import com.davajava.migrator.core.ast.IfStatementNode;
+import com.davajava.migrator.core.ast.ForLoopNode;
+import com.davajava.migrator.core.ast.WhileLoopNode;
+import com.davajava.migrator.core.ast.AssignmentNode;
+import com.davajava.migrator.core.ast.ExpressionNode;
+import com.davajava.migrator.core.ast.LiteralNode;
+import com.davajava.migrator.core.ast.IdentifierNode;
 import java.util.logging.Logger;
 
 import java.io.IOException;
@@ -28,6 +37,31 @@ public class PythonParser implements Parser {
     
     private static final Pattern CLASS_PATTERN = Pattern.compile(
         "^class\\s+(\\w+)(?:\\([^)]*\\))?\\s*:",
+        Pattern.MULTILINE
+    );
+    
+    private static final Pattern ASSIGNMENT_PATTERN = Pattern.compile(
+        "^\\s*(\\w+)\\s*=\\s*(.+)$",
+        Pattern.MULTILINE
+    );
+    
+    private static final Pattern IF_PATTERN = Pattern.compile(
+        "^\\s*if\\s+(.+):",
+        Pattern.MULTILINE
+    );
+    
+    private static final Pattern FOR_PATTERN = Pattern.compile(
+        "^\\s*for\\s+(\\w+)\\s+in\\s+(.+):",
+        Pattern.MULTILINE
+    );
+    
+    private static final Pattern WHILE_PATTERN = Pattern.compile(
+        "^\\s*while\\s+(.+):",
+        Pattern.MULTILINE
+    );
+    
+    private static final Pattern IMPORT_PATTERN = Pattern.compile(
+        "^(?:from\\s+(\\S+)\\s+)?import\\s+(.+)$",
         Pattern.MULTILINE
     );
 

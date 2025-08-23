@@ -1,4 +1,4 @@
-package com.davajava.migrator.translator.c;
+package com.davajava.migrator.translator.scala;
 
 import com.davajava.migrator.core.SourceLanguage;
 import com.davajava.migrator.core.TranslationException;
@@ -6,11 +6,11 @@ import com.davajava.migrator.core.TranslationOptions;
 import com.davajava.migrator.core.Translator;
 import com.davajava.migrator.core.ast.ASTNode;
 
-public class CToJavaTranslator implements Translator {
-    private final CToJavaVisitor visitor;
+public class ScalaToJavaTranslator implements Translator {
+    private final ScalaToJavaVisitor visitor;
 
-    public CToJavaTranslator() {
-        this.visitor = new CToJavaVisitor();
+    public ScalaToJavaTranslator() {
+        this.visitor = new ScalaToJavaVisitor();
     }
 
     @Override
@@ -24,21 +24,23 @@ public class CToJavaTranslator implements Translator {
             visitor.setOptions(options);
             return ast.accept(visitor);
         } catch (Exception e) {
-            throw new TranslationException("Failed to translate C AST to Java", e);
+            throw new TranslationException("Failed to translate Scala AST to Java", e);
         }
     }
 
     @Override
     public SourceLanguage getSourceLanguage() {
-        return SourceLanguage.C;
+        return SourceLanguage.SCALA;
     }
 
     @Override
     public TranslationOptions getDefaultOptions() {
         TranslationOptions options = TranslationOptions.defaultOptions();
-        options.setOption("cSpecific.generateImports", true);
-        options.setOption("cSpecific.addMemoryManagement", false);
-        options.setOption("cSpecific.convertPointers", true);
+        options.setOption("scalaSpecific.generateImports", true);
+        options.setOption("scalaSpecific.convertCaseClasses", true);
+        options.setOption("scalaSpecific.handleTraits", true);
+        options.setOption("scalaSpecific.convertObjects", true);
+        options.setOption("scalaSpecific.handleFunctional", true);
         return options;
     }
 }

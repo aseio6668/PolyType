@@ -123,10 +123,24 @@ public class PythonToJavaVisitor implements ASTVisitor {
         }
     }
 
-    // Placeholder implementations for other visitor methods
     @Override
     public String visitVariableDeclaration(VariableDeclarationNode node) {
-        return "// Variable declaration not yet implemented";
+        indent();
+        
+        String type = node.getDataType();
+        if (type == null || type.isEmpty() || "auto".equals(type)) {
+            type = "var"; // Use Java's type inference
+        }
+        
+        output.append(type).append(" ").append(node.getName());
+        
+        if (node.getInitializer() != null) {
+            output.append(" = ");
+            node.getInitializer().accept(this);
+        }
+        
+        output.append(";\n");
+        return "";
     }
 
     @Override
@@ -151,12 +165,32 @@ public class PythonToJavaVisitor implements ASTVisitor {
 
     @Override
     public String visitLiteral(LiteralNode node) {
-        return "// Literal not yet implemented";
+        String value = node.getValue().toString();
+        LiteralNode.LiteralType type = node.getLiteralType();
+        
+        // Handle Python-specific literal conversions
+        if (type == LiteralNode.LiteralType.STRING || value.startsWith("\"") || value.startsWith("'")) {
+            if (!value.startsWith("\"") && !value.startsWith("'")) {
+                value = "\"" + value + "\"";
+            }
+            // Convert Python single quotes to Java double quotes
+            if (value.startsWith("'") && value.endsWith("'")) {
+                value = "\"" + value.substring(1, value.length() - 1) + "\"";
+            }
+        } else if (type == LiteralNode.LiteralType.BOOLEAN) {
+            value = "True".equals(value) ? "true" : "False".equals(value) ? "false" : value;
+        } else if ("None".equals(value) || type == LiteralNode.LiteralType.NULL) {
+            value = "null";
+        }
+        
+        output.append(value);
+        return "";
     }
 
     @Override
     public String visitIdentifier(IdentifierNode node) {
-        return "// Identifier not yet implemented";
+        output.append(node.getName());
+        return "";
     }
 
     @Override
@@ -166,7 +200,40 @@ public class PythonToJavaVisitor implements ASTVisitor {
 
     @Override
     public String visitIfStatement(IfStatementNode node) {
-        return "// If statement not yet implemented";
+        indent();
+        output.append("if (");
+        
+        if (node.getCondition() != null) {
+            node.getCondition().accept(this);
+        } else {
+            output.append("true");
+        }
+        
+        output.append(") {\n");
+        indentLevel++;
+        
+        if (node.getThenStatement() != null) {
+            node.getThenStatement().accept(this);
+        } else {
+            indent();
+            output.append("// TODO: Implement if body\n");
+        }
+        
+        indentLevel--;
+        indent();
+        output.append("}");
+        
+        if (node.getElseStatement() != null) {
+            output.append(" else {\n");
+            indentLevel++;
+            node.getElseStatement().accept(this);
+            indentLevel--;
+            indent();
+            output.append("}");
+        }
+        
+        output.append("\n");
+        return "";
     }
 
     @Override
@@ -176,7 +243,25 @@ public class PythonToJavaVisitor implements ASTVisitor {
 
     @Override
     public String visitForLoop(ForLoopNode node) {
-        return "// For loop not yet implemented";
+        indent();
+        
+        // For Python enhanced for-loops, we need to handle them differently
+        // Since the AST is designed for C-style loops, we'll create a simple template
+        output.append("for (var item : collection) {\n");
+        indentLevel++;
+        
+        if (node.getBody() != null) {
+            node.getBody().accept(this);
+        } else {
+            indent();
+            output.append("// TODO: Implement for loop body\n");
+        }
+        
+        indentLevel--;
+        indent();
+        output.append("}\n");
+        
+        return "";
     }
 
     @Override
@@ -186,7 +271,20 @@ public class PythonToJavaVisitor implements ASTVisitor {
 
     @Override
     public String visitAssignment(AssignmentNode node) {
-        return "// Assignment not yet implemented";
+        indent();
+        
+        if (node.getTarget() != null) {
+            node.getTarget().accept(this);
+        }
+        
+        output.append(" = ");
+        
+        if (node.getValue() != null) {
+            node.getValue().accept(this);
+        }
+        
+        output.append(";\n");
+        return "";
     }
 
     @Override

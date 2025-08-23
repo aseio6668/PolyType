@@ -1,4 +1,4 @@
-package com.davajava.migrator.translator.c;
+package com.davajava.migrator.translator.swift;
 
 import com.davajava.migrator.core.SourceLanguage;
 import com.davajava.migrator.core.TranslationException;
@@ -6,11 +6,11 @@ import com.davajava.migrator.core.TranslationOptions;
 import com.davajava.migrator.core.Translator;
 import com.davajava.migrator.core.ast.ASTNode;
 
-public class CToJavaTranslator implements Translator {
-    private final CToJavaVisitor visitor;
+public class SwiftToJavaTranslator implements Translator {
+    private final SwiftToJavaVisitor visitor;
 
-    public CToJavaTranslator() {
-        this.visitor = new CToJavaVisitor();
+    public SwiftToJavaTranslator() {
+        this.visitor = new SwiftToJavaVisitor();
     }
 
     @Override
@@ -24,21 +24,26 @@ public class CToJavaTranslator implements Translator {
             visitor.setOptions(options);
             return ast.accept(visitor);
         } catch (Exception e) {
-            throw new TranslationException("Failed to translate C AST to Java", e);
+            throw new TranslationException("Failed to translate Swift AST to Java", e);
         }
     }
 
     @Override
     public SourceLanguage getSourceLanguage() {
-        return SourceLanguage.C;
+        return SourceLanguage.SWIFT;
     }
 
     @Override
     public TranslationOptions getDefaultOptions() {
         TranslationOptions options = TranslationOptions.defaultOptions();
-        options.setOption("cSpecific.generateImports", true);
-        options.setOption("cSpecific.addMemoryManagement", false);
-        options.setOption("cSpecific.convertPointers", true);
+        options.setOption("swiftSpecific.generateImports", true);
+        options.setOption("swiftSpecific.handleOptionals", true);
+        options.setOption("swiftSpecific.convertProtocols", true);
+        options.setOption("swiftSpecific.handleEnums", true);
+        options.setOption("swiftSpecific.convertClosures", true);
+        options.setOption("swiftSpecific.handleStructs", true);
+        options.setOption("swiftSpecific.generateUtilMethods", true);
+        options.setOption("swiftSpecific.convertSwiftUI", false);
         return options;
     }
 }

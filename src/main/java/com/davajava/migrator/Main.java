@@ -18,7 +18,7 @@ public class Main {
                 System.out.println("Arguments:");
                 System.out.println("  <input>            Input file or directory");
                 System.out.println("  <output>           Output directory");
-                System.out.println("  <language>         Source language (rust, python)");
+                System.out.println("  <language>         Source language (rust, python, c, cpp, csharp, kotlin, scala, javascript, typescript, go, swift)");
                 System.out.println("");
                 System.out.println("Examples:");
                 System.out.println("  java -jar davajava-migrator.jar file.rs output rust");
@@ -60,9 +60,39 @@ public class Main {
                 case "python":
                     language = SourceLanguage.PYTHON;
                     break;
+                case "c":
+                    language = SourceLanguage.C;
+                    break;
+                case "cpp":
+                    language = SourceLanguage.CPP;
+                    break;
+                case "crystal":
+                    language = SourceLanguage.CRYSTAL;
+                    break;
+                case "csharp":
+                    language = SourceLanguage.CSHARP;
+                    break;
+                case "kotlin":
+                    language = SourceLanguage.KOTLIN;
+                    break;
+                case "scala":
+                    language = SourceLanguage.SCALA;
+                    break;
+                case "javascript": case "js":
+                    language = SourceLanguage.JAVASCRIPT;
+                    break;
+                case "typescript": case "ts":
+                    language = SourceLanguage.TYPESCRIPT;
+                    break;
+                case "go":
+                    language = SourceLanguage.GO;
+                    break;
+                case "swift":
+                    language = SourceLanguage.SWIFT;
+                    break;
                 default:
                     System.err.println("Unsupported language: " + languageStr);
-                    System.err.println("Supported languages: rust, python");
+                    System.err.println("Supported languages: rust, python, c, cpp, crystal, csharp, kotlin, scala, javascript, typescript, go, swift");
                     System.exit(1);
                     return;
             }

@@ -6,7 +6,13 @@ public enum SourceLanguage {
     C(".c", "C"),
     CPP(".cpp", "C++"),
     PYTHON(".py", "Python"),
-    CSHARP(".cs", "C#");
+    CSHARP(".cs", "C#"),
+    KOTLIN(".kt", "Kotlin"),
+    SCALA(".scala", "Scala"),
+    JAVASCRIPT(".js", "JavaScript"),
+    TYPESCRIPT(".ts", "TypeScript"),
+    GO(".go", "Go"),
+    SWIFT(".swift", "Swift");
 
     private final String fileExtension;
     private final String displayName;

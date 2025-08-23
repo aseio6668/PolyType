@@ -1,0 +1,74 @@
+{
+  "general": {
+    "default_package": "com.generated",
+    "preserve_comments": true,
+    "generate_javadoc": false,
+    "verbose": false
+  },
+  "translation": {
+    "indent_size": 4,
+    "include_type_annotations": true,
+    "generate_constructors": true,
+    "generate_getters_setters": true,
+    "type_mappings": {
+      "rust.i32": "int",
+      "rust.i64": "long",
+      "rust.f32": "float",
+      "rust.f64": "double",
+      "rust.String": "String",
+      "rust.bool": "boolean",
+      "rust.Vec": "List",
+      "rust.Option": "Optional",
+      "python.int": "int",
+      "python.float": "double",
+      "python.str": "String",
+      "python.bool": "boolean",
+      "python.list": "List",
+      "python.dict": "Map",
+      "csharp.int": "int",
+      "csharp.long": "long",
+      "csharp.float": "float",
+      "csharp.double": "double",
+      "csharp.string": "String",
+      "csharp.bool": "boolean",
+      "csharp.List": "List",
+      "csharp.Dictionary": "Map"
+    }
+  },
+  "language_specific": {
+    "rust": {
+      "handle_ownership": true,
+      "convert_traits": true,
+      "handle_lifetimes": false,
+      "generate_impl_blocks": true
+    },
+    "python": {
+      "generate_imports": true,
+      "handle_duck_typing": true,
+      "add_type_comments": true,
+      "convert_magic_methods": true
+    },
+    "csharp": {
+      "convert_properties": true,
+      "handle_nullable_types": true,
+      "generate_interfaces": true,
+      "preserve_attributes": false
+    },
+    "c": {
+      "handle_pointers": true,
+      "generate_memory_management": true,
+      "convert_structs_to_classes": true
+    },
+    "cpp": {
+      "handle_templates": true,
+      "convert_classes": true,
+      "handle_namespaces": true,
+      "generate_destructors": false
+    },
+    "crystal": {
+      "handle_macros": false,
+      "convert_modules": true,
+      "handle_generics": true
+    }
+  }
+}

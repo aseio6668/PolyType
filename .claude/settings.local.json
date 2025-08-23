@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mvn:*)",
+      "Bash(chmod:*)",
+      "Bash(./mvnw.cmd:*)",
+      "Bash(java:*)",
+      "Bash(cmd /c:*)",
+      "Bash(ls:*)",
+      "Bash(export:*)",
+      "Bash(export PATH=\"$JAVA_HOME/bin:$PATH\")",
+      "Bash(./mvnw:*)",
+      "Bash(curl:*)",
+      "Bash(rm:*)",
+      "Bash(git checkout:*)",
+      "Bash(grep:*)",
+      "Bash(sed:*)",
+      "Bash(build.bat)",
+      "Bash(./build.bat)",
+      "Bash(del:*)",
+      "Bash(davajava.bat)",
+      "Bash(jar:*)"
+    ],
+    "deny": [],
+    "ask": [],
+    "additionalDirectories": [
+      "C:\\c"
+    ]
+  }
+}

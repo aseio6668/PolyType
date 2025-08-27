@@ -579,28 +579,221 @@ public class CrossPlatformScriptGenerator {
                "echo Clean completed!\n";
     }
     
-    private String generateUnixSetupScript() { return getUnixScriptHeader("Setup Script", "Sets up development environment"); }
-    private String generateWindowsSetupScript() { return getWindowsScriptHeader("Setup Script", "Sets up development environment"); }
-    private String generateUnixDependencyInstallScript() { return getUnixScriptHeader("Dependency Install", "Installs project dependencies"); }
-    private String generateWindowsDependencyInstallScript() { return getWindowsScriptHeader("Dependency Install", "Installs project dependencies"); }
-    private String generateUnixRunScript() { return getUnixScriptHeader("Run Script", "Runs the application"); }
-    private String generateWindowsRunScript() { return getWindowsScriptHeader("Run Script", "Runs the application"); }
-    private String generateUnixStartScript() { return getUnixScriptHeader("Start Script", "Starts the application as service"); }
-    private String generateWindowsStartScript() { return getWindowsScriptHeader("Start Script", "Starts the application as service"); }
-    private String generateUnixStopScript() { return getUnixScriptHeader("Stop Script", "Stops the application service"); }
-    private String generateWindowsStopScript() { return getWindowsScriptHeader("Stop Script", "Stops the application service"); }
-    private String generateUnixTestScript() { return getUnixScriptHeader("Test Script", "Runs tests"); }
-    private String generateWindowsTestScript() { return getWindowsScriptHeader("Test Script", "Runs tests"); }
-    private String generateUnixCoverageScript() { return getUnixScriptHeader("Coverage Script", "Runs tests with coverage"); }
-    private String generateWindowsCoverageScript() { return getWindowsScriptHeader("Coverage Script", "Runs tests with coverage"); }
-    private String generateUnixDeployScript() { return getUnixScriptHeader("Deploy Script", "Deploys the application"); }
-    private String generateWindowsDeployScript() { return getWindowsScriptHeader("Deploy Script", "Deploys the application"); }
-    private String generateUnixPackageScript() { return getUnixScriptHeader("Package Script", "Packages the application"); }
-    private String generateWindowsPackageScript() { return getWindowsScriptHeader("Package Script", "Packages the application"); }
-    private String generateUnixDevSetupScript() { return getUnixScriptHeader("Dev Setup", "Sets up development environment"); }
-    private String generateWindowsDevSetupScript() { return getWindowsScriptHeader("Dev Setup", "Sets up development environment"); }
-    private String generateUnixFormatScript() { return getUnixScriptHeader("Format Script", "Formats source code"); }
-    private String generateWindowsFormatScript() { return getWindowsScriptHeader("Format Script", "Formats source code"); }
-    private String generateUnixLintScript() { return getUnixScriptHeader("Lint Script", "Lints source code"); }
-    private String generateWindowsLintScript() { return getWindowsScriptHeader("Lint Script", "Lints source code"); }
+    private String generateUnixSetupScript() {
+        StringBuilder script = new StringBuilder();
+        script.append(getUnixScriptHeader("Setup Script", "Sets up development environment"));
+        
+        script.append("# Set error handling\n");
+        script.append("set -e\n");
+        script.append("set -u\n\n");
+        
+        script.append("echo \"Setting up development environment for ").append(targetLanguage).append("...\"\n\n");
+        
+        switch (targetLanguage) {
+            case JAVA:
+                script.append(generateJavaUnixSetupCommands());
+                break;
+            case PYTHON:
+                script.append(generatePythonUnixSetupCommands());
+                break;
+            case JAVASCRIPT:
+                script.append(generateJavaScriptUnixSetupCommands());
+                break;
+            case RUST:
+                script.append(generateRustUnixSetupCommands());
+                break;
+            case CPP:
+                script.append(generateCppUnixSetupCommands());
+                break;
+            default:
+                script.append("echo \"Generic setup for ").append(targetLanguage).append("\"\n");
+        }
+        
+        script.append("\necho \"Development environment setup completed!\"\n");
+        return script.toString();
+    }
+    
+    private String generateWindowsSetupScript() {
+        StringBuilder script = new StringBuilder();
+        script.append(getWindowsScriptHeader("Setup Script", "Sets up development environment"));
+        
+        script.append("setlocal EnableDelayedExpansion\n");
+        script.append("echo Setting up development environment for ").append(targetLanguage).append("...\n\n");
+        
+        switch (targetLanguage) {
+            case JAVA:
+                script.append(generateJavaWindowsSetupCommands());
+                break;
+            case PYTHON:
+                script.append(generatePythonWindowsSetupCommands());
+                break;
+            case JAVASCRIPT:
+                script.append(generateJavaScriptWindowsSetupCommands());
+                break;
+            case RUST:
+                script.append(generateRustWindowsSetupCommands());
+                break;
+            case CPP:
+                script.append(generateCppWindowsSetupCommands());
+                break;
+            default:
+                script.append("echo Generic setup for ").append(targetLanguage).append("\n");
+        }
+        
+        script.append("\necho Development environment setup completed!\n");
+        return script.toString();
+    }
+    
+    // Language-specific setup commands
+    private String generateJavaUnixSetupCommands() {
+        return "# Java development setup\n" +
+               "echo \"Checking Java installation...\"\n" +
+               "if ! command -v java >/dev/null 2>&1; then\n" +
+               "    echo \"Java not found. Please install JDK 11 or later.\"\n" +
+               "    exit 1\n" +
+               "fi\n" +
+               "java -version\n" +
+               "echo \"Java OK\"\n\n";
+    }
+    
+    private String generateJavaWindowsSetupCommands() {
+        return "REM Java development setup\n" +
+               "echo Checking Java installation...\n" +
+               "java -version >nul 2>&1\n" +
+               "if errorlevel 1 (\n" +
+               "    echo Java not found. Please install JDK 11 or later.\n" +
+               "    exit /b 1\n" +
+               ")\n" +
+               "java -version\n" +
+               "echo Java OK\n\n";
+    }
+    
+    private String generatePythonUnixSetupCommands() {
+        return "# Python development setup\n" +
+               "echo \"Checking Python installation...\"\n" +
+               "if ! command -v python3 >/dev/null 2>&1; then\n" +
+               "    echo \"Python 3 not found. Please install Python 3.8+\"\n" +
+               "    exit 1\n" +
+               "fi\n" +
+               "python3 --version\n" +
+               "if [ -f \"requirements.txt\" ]; then\n" +
+               "    echo \"Installing Python dependencies...\"\n" +
+               "    python3 -m pip install -r requirements.txt\n" +
+               "fi\n";
+    }
+    
+    private String generatePythonWindowsSetupCommands() {
+        return "REM Python development setup\n" +
+               "echo Checking Python installation...\n" +
+               "python --version >nul 2>&1\n" +
+               "if errorlevel 1 (\n" +
+               "    echo Python not found. Please install Python 3.8+\n" +
+               "    exit /b 1\n" +
+               ")\n" +
+               "python --version\n" +
+               "if exist \"requirements.txt\" (\n" +
+               "    echo Installing Python dependencies...\n" +
+               "    python -m pip install -r requirements.txt\n" +
+               ")\n";
+    }
+    
+    private String generateJavaScriptUnixSetupCommands() {
+        return "# Node.js development setup\n" +
+               "echo \"Checking Node.js installation...\"\n" +
+               "if ! command -v node >/dev/null 2>&1; then\n" +
+               "    echo \"Node.js not found. Please install Node.js 14+\"\n" +
+               "    exit 1\n" +
+               "fi\n" +
+               "node --version\n" +
+               "npm --version\n" +
+               "if [ -f \"package.json\" ]; then\n" +
+               "    echo \"Installing Node.js dependencies...\"\n" +
+               "    npm install\n" +
+               "fi\n";
+    }
+    
+    private String generateJavaScriptWindowsSetupCommands() {
+        return "REM Node.js development setup\n" +
+               "echo Checking Node.js installation...\n" +
+               "node --version >nul 2>&1\n" +
+               "if errorlevel 1 (\n" +
+               "    echo Node.js not found. Please install Node.js 14+\n" +
+               "    exit /b 1\n" +
+               ")\n" +
+               "node --version\n" +
+               "npm --version\n" +
+               "if exist \"package.json\" (\n" +
+               "    echo Installing Node.js dependencies...\n" +
+               "    npm install\n" +
+               ")\n";
+    }
+    
+    private String generateRustUnixSetupCommands() {
+        return "# Rust development setup\n" +
+               "echo \"Checking Rust installation...\"\n" +
+               "if ! command -v cargo >/dev/null 2>&1; then\n" +
+               "    echo \"Rust not found. Installing via rustup...\"\n" +
+               "    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y\n" +
+               "    source $HOME/.cargo/env\n" +
+               "fi\n" +
+               "rustc --version\n" +
+               "cargo --version\n";
+    }
+    
+    private String generateRustWindowsSetupCommands() {
+        return "REM Rust development setup\n" +
+               "echo Checking Rust installation...\n" +
+               "cargo --version >nul 2>&1\n" +
+               "if errorlevel 1 (\n" +
+               "    echo Rust not found. Please install from https://rustup.rs/\n" +
+               "    exit /b 1\n" +
+               ")\n" +
+               "rustc --version\n" +
+               "cargo --version\n";
+    }
+    
+    private String generateCppUnixSetupCommands() {
+        return "# C++ development setup\n" +
+               "echo \"Checking C++ compiler...\"\n" +
+               "if ! command -v g++ >/dev/null 2>&1 && ! command -v clang++ >/dev/null 2>&1; then\n" +
+               "    echo \"C++ compiler not found. Installing build-essential...\"\n" +
+               "    sudo apt-get update && sudo apt-get install -y build-essential\n" +
+               "fi\n" +
+               "g++ --version || clang++ --version\n";
+    }
+    
+    private String generateCppWindowsSetupCommands() {
+        return "REM C++ development setup\n" +
+               "echo Checking C++ compiler...\n" +
+               "cl >nul 2>&1\n" +
+               "if errorlevel 1 (\n" +
+               "    echo MSVC not found. Please install Visual Studio Build Tools\n" +
+               "    exit /b 1\n" +
+               ")\n" +
+               "cl\n";
+    }
+    
+    // Simplified implementations for other placeholder methods
+    private String generateUnixDependencyInstallScript() { return getUnixScriptHeader("Dependency Install", "Installs project dependencies") + "# Add dependency installation commands here\n"; }
+    private String generateWindowsDependencyInstallScript() { return getWindowsScriptHeader("Dependency Install", "Installs project dependencies") + "REM Add dependency installation commands here\n"; }
+    private String generateUnixRunScript() { return getUnixScriptHeader("Run Script", "Runs the application") + "# Add run commands here\n"; }
+    private String generateWindowsRunScript() { return getWindowsScriptHeader("Run Script", "Runs the application") + "REM Add run commands here\n"; }
+    private String generateUnixStartScript() { return getUnixScriptHeader("Start Script", "Starts the application as service") + "# Add start commands here\n"; }
+    private String generateWindowsStartScript() { return getWindowsScriptHeader("Start Script", "Starts the application as service") + "REM Add start commands here\n"; }
+    private String generateUnixStopScript() { return getUnixScriptHeader("Stop Script", "Stops the application service") + "# Add stop commands here\n"; }
+    private String generateWindowsStopScript() { return getWindowsScriptHeader("Stop Script", "Stops the application service") + "REM Add stop commands here\n"; }
+    private String generateUnixTestScript() { return getUnixScriptHeader("Test Script", "Runs tests") + "# Add test commands here\n"; }
+    private String generateWindowsTestScript() { return getWindowsScriptHeader("Test Script", "Runs tests") + "REM Add test commands here\n"; }
+    private String generateUnixCoverageScript() { return getUnixScriptHeader("Coverage Script", "Runs tests with coverage") + "# Add coverage commands here\n"; }
+    private String generateWindowsCoverageScript() { return getWindowsScriptHeader("Coverage Script", "Runs tests with coverage") + "REM Add coverage commands here\n"; }
+    private String generateUnixDeployScript() { return getUnixScriptHeader("Deploy Script", "Deploys the application") + "# Add deploy commands here\n"; }
+    private String generateWindowsDeployScript() { return getWindowsScriptHeader("Deploy Script", "Deploys the application") + "REM Add deploy commands here\n"; }
+    private String generateUnixPackageScript() { return getUnixScriptHeader("Package Script", "Packages the application") + "# Add package commands here\n"; }
+    private String generateWindowsPackageScript() { return getWindowsScriptHeader("Package Script", "Packages the application") + "REM Add package commands here\n"; }
+    private String generateUnixDevSetupScript() { return getUnixScriptHeader("Dev Setup", "Sets up development environment") + "# Add dev setup commands here\n"; }
+    private String generateWindowsDevSetupScript() { return getWindowsScriptHeader("Dev Setup", "Sets up development environment") + "REM Add dev setup commands here\n"; }
+    private String generateUnixFormatScript() { return getUnixScriptHeader("Format Script", "Formats source code") + "# Add format commands here\n"; }
+    private String generateWindowsFormatScript() { return getWindowsScriptHeader("Format Script", "Formats source code") + "REM Add format commands here\n"; }
+    private String generateUnixLintScript() { return getUnixScriptHeader("Lint Script", "Lints source code") + "# Add lint commands here\n"; }
+    private String generateWindowsLintScript() { return getWindowsScriptHeader("Lint Script", "Lints source code") + "REM Add lint commands here\n"; }
 }

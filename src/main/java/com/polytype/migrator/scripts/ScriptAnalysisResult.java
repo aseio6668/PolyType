@@ -156,7 +156,8 @@ public class ScriptAnalysisResult {
     
     public enum ScriptPurpose {
         BUILD, SETUP, RUNTIME, TESTING, DEPLOYMENT, CICD, 
-        CONFIGURATION, DOCUMENTATION, DEPENDENCY_MANAGEMENT, UNKNOWN
+        CONFIGURATION, DOCUMENTATION, DEPENDENCY_MANAGEMENT, 
+        CLEANUP, UTILITY, UNKNOWN
     }
     
     public enum ScriptComplexity {

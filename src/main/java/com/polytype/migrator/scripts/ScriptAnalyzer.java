@@ -149,21 +149,24 @@ public class ScriptAnalyzer {
     // Private methods for implementation
     
     private void initializeParsers() {
+        // Core parsers that are implemented
         parsers.put(ScriptType.MAKEFILE, new MakefileParser());
-        parsers.put(ScriptType.CMAKE, new CMakeParser());
+        parsers.put(ScriptType.CMAKE, new CMakeListsParser());
         parsers.put(ScriptType.PACKAGE_JSON, new PackageJsonParser());
-        parsers.put(ScriptType.POM_XML, new PomXmlParser());
+        parsers.put(ScriptType.POM_XML, new PomXmlParserImpl());
         parsers.put(ScriptType.BUILD_GRADLE, new GradleParser());
         parsers.put(ScriptType.CARGO_TOML, new CargoTomlParser());
-        parsers.put(ScriptType.SETUP_PY, new SetupPyParser());
         parsers.put(ScriptType.SHELL_SCRIPT, new ShellScriptParser());
         parsers.put(ScriptType.BATCH_SCRIPT, new BatchScriptParser());
-        parsers.put(ScriptType.COMPOSER_JSON, new ComposerJsonParser());
-        parsers.put(ScriptType.GEMFILE, new GemfileParser());
-        parsers.put(ScriptType.GITHUB_WORKFLOW, new GitHubWorkflowParser());
-        parsers.put(ScriptType.GITLAB_CI, new GitLabCIParser());
-        parsers.put(ScriptType.DOCKERFILE, new DockerfileParser());
-        parsers.put(ScriptType.JENKINS_FILE, new JenkinsfileParser());
+        
+        // TODO: Implement additional parsers as needed
+        // parsers.put(ScriptType.SETUP_PY, new SetupPyParser());
+        // parsers.put(ScriptType.COMPOSER_JSON, new ComposerJsonParser());
+        // parsers.put(ScriptType.GEMFILE, new GemfileParser());
+        // parsers.put(ScriptType.GITHUB_WORKFLOW, new GitHubWorkflowParser());
+        // parsers.put(ScriptType.GITLAB_CI, new GitLabCIParser());
+        // parsers.put(ScriptType.DOCKERFILE, new DockerfileParser());
+        // parsers.put(ScriptType.JENKINS_FILE, new JenkinsfileParser());
     }
     
     private void initializeFileMappings() {

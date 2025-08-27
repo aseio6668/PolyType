@@ -51,12 +51,16 @@ PolyType can generate clean, idiomatic code in these target languages:
 - **Ruby** (.rb) - Idiomatic Ruby with Rails patterns and Bundler integration
 
 ### 🛠️ Revolutionary Build System & Script Analysis
-- **Universal Script Parser** - Analyzes Makefiles, CMake, package.json, pom.xml, Cargo.toml, etc.
-- **Cross-Platform Script Generation** - Automatic .sh and .bat creation for any platform
-- **Build System Migration** - Converts between Maven ↔ Gradle ↔ npm ↔ CMake ↔ Cargo
-- **CI/CD Pipeline Translation** - GitHub Actions, GitLab CI, Jenkins automation
-- **Dependency Management** - Intelligent dependency mapping across ecosystems
-- **Project Workflow Analysis** - Understands and replicates complex build processes
+
+**Complete Project Ecosystem Migration:**
+- **Universal Script Parser** - Analyzes 20+ script types: Makefiles, CMake, package.json, pom.xml, Cargo.toml, shell scripts, batch files
+- **Cross-Platform Script Generation** - Automatic .sh and .bat creation with language-specific setup, build, test, and deployment scripts
+- **Intelligent Build System Migration** - Seamless conversion between Maven ↔ Gradle ↔ npm ↔ CMake ↔ Cargo ↔ setuptools
+- **Embedded Language Detection** - Identifies and handles SQL, JavaScript, shell scripts, and other embedded languages
+- **Best-Fit Language Recommendations** - AI-powered analysis suggests optimal target languages based on project dependencies and patterns
+- **Dependency Ecosystem Mapping** - Intelligent dependency translation across language ecosystems (pip ↔ npm ↔ crates.io ↔ Maven Central)
+- **CI/CD Pipeline Translation** - GitHub Actions, GitLab CI, Jenkins pipeline automation with cross-platform compatibility
+- **Project Workflow Replication** - Understands complex multi-step build processes and recreates them in target languages
 
 ### 🚀 Revolutionary Android Migration
 - **APK Decompiler** - Extract structured source code from Android APK files
@@ -226,6 +230,17 @@ java -jar polytype-migrator.jar --android-project ./MyAndroidApp -o web-output/ 
 - **Project Migration Engine**: Complete project structure analysis and workflow preservation
 - **CLI Framework**: Enhanced command line interface with comprehensive project analysis
 
+### 🛠️ Script Analysis & Generation System
+
+**Revolutionary Script Intelligence:**
+- **ScriptAnalyzer**: Comprehensive analysis of 20+ script types including Makefiles, CMake, Gradle, npm, Cargo, shell scripts, batch files
+- **EmbeddedLanguageDetector**: Identifies embedded languages (SQL, JavaScript, Python) and assesses compatibility with target languages
+- **CrossPlatformScriptGenerator**: Generates matching .sh and .bat scripts with language-specific build commands and error handling
+- **BuildSystemGenerator**: Creates complete build system configurations (pom.xml, build.gradle, package.json, Cargo.toml, CMakeLists.txt)
+- **ScriptAwareTranslationWorkflow**: Integrated workflow that combines code translation with script migration
+- **ProjectWorkflowAnalyzer**: Understands complex multi-step build processes and recreates them in target environments
+- **LanguageCompatibilityAssessor**: AI-powered analysis recommends optimal target languages and identifies potential integration issues
+
 ### 🐍 Advanced Python Analysis Architecture
 
 - **Enhanced Python Parser**: Modern Python 3.8+ with type hints, dataclasses, async/await support
@@ -305,6 +320,159 @@ translators.put(SourceLanguage.YOUR_LANGUAGE, new YourLanguageToJavaTranslator()
 - **Web**: JavaScript/TypeScript to Java enterprise migration
 - **Systems**: C/C++/Rust to Java for enterprise integration
 - **Modern Languages**: Go/Swift/Kotlin for cross-platform development
+
+## 🚀 Script Analysis & Generation Examples
+
+### Complete Project Migration: Rust → Java
+
+**Input Project Structure:**
+```
+my-rust-project/
+├── Cargo.toml
+├── build.sh
+├── src/main.rs
+└── README.md
+```
+
+**PolyType Command:**
+```bash
+java -jar polytype.jar --source rust --target java --analyze-scripts --generate-cross-platform my-rust-project/
+```
+
+**Generated Output Structure:**
+```
+my-rust-project-java/
+├── pom.xml              # Generated from Cargo.toml
+├── build.gradle         # Alternative build system
+├── src/main/java/       # Translated Rust code
+├── scripts/
+│   ├── build.sh         # Cross-platform Unix build
+│   ├── build.bat        # Cross-platform Windows build
+│   ├── setup.sh         # Environment setup
+│   └── setup.bat        # Windows environment setup
+├── MIGRATION.md         # Generated migration guide
+├── PROJECT_STRUCTURE.md # Project layout recommendations
+└── README.md           # Updated documentation
+```
+
+**Generated pom.xml** (from Cargo.toml analysis):
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.polytype</groupId>
+    <artifactId>my-rust-project</artifactId>
+    <version>1.0.0</version>
+    
+    <dependencies>
+        <!-- Mapped from Cargo.toml dependencies -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.15.2</version>
+        </dependency>
+    </dependencies>
+</project>
+```
+
+**Generated Cross-Platform Build Scripts:**
+
+**build.sh:**
+```bash
+#!/bin/bash
+# Build Script - Generated by PolyType
+# Builds the Java project
+
+set -e
+echo "Building Java project..."
+
+# Detect Java build system
+if [ -f "pom.xml" ]; then
+    echo "Using Maven"
+    if [ -f "./mvnw" ]; then
+        ./mvnw clean compile package -DskipTests
+    else
+        mvn clean compile package -DskipTests
+    fi
+elif [ -f "build.gradle" ]; then
+    echo "Using Gradle" 
+    ./gradlew clean build -x test
+fi
+
+echo "Build completed successfully!"
+```
+
+**build.bat:**
+```bat
+@echo off
+REM Build Script - Generated by PolyType
+echo Building Java project...
+
+if exist "pom.xml" (
+    echo Using Maven
+    if exist "mvnw.cmd" (
+        mvnw.cmd clean compile package -DskipTests
+    ) else (
+        mvn clean compile package -DskipTests
+    )
+) else if exist "build.gradle" (
+    echo Using Gradle
+    gradlew.bat clean build -x test
+)
+
+echo Build completed successfully!
+```
+
+### Python Project with Embedded Languages → JavaScript
+
+**Input Project Analysis:**
+```
+python-web-app/
+├── setup.py
+├── requirements.txt
+├── app.py              # Contains SQL queries
+├── scripts/deploy.sh   # Deployment automation
+└── templates/app.js    # Embedded JavaScript
+```
+
+**PolyType Smart Analysis Output:**
+```
+🔍 Script Analysis Results:
+✅ Detected build system: setuptools (Python)
+✅ Found embedded languages: SQL, JavaScript, Shell
+✅ Target compatibility: JavaScript (85% compatible)
+⚠️  SQL integration requires database adapter
+⚠️  Shell script needs Node.js equivalent
+✅ Recommended target: Node.js with Express framework
+
+🛠️  Generated Assets:
+📦 package.json (from setup.py + requirements.txt)
+🔧 webpack.config.js (build configuration)
+🐧 build.sh (Unix deployment)
+🪟 build.bat (Windows deployment)
+📋 MIGRATION.md (comprehensive guide)
+```
+
+**Generated package.json:**
+```json
+{
+  "name": "python-web-app",
+  "version": "1.0.0",
+  "description": "Migrated from Python using PolyType",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "build": "webpack --mode=production",
+    "dev": "nodemon src/app.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6",
+    "body-parser": "^1.20.2"
+  }
+}
+```
 
 ## Example Migrations
 

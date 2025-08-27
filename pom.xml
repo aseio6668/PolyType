@@ -4,13 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.davajava</groupId>
-    <artifactId>code-migrator</artifactId>
-    <version>1.0.0</version>
+    <groupId>com.polytype</groupId>
+    <artifactId>polytype-migrator</artifactId>
+    <version>2.0.0</version>
     <packaging>jar</packaging>
 
-    <name>DavaJava Code Migrator</name>
-    <description>A robust multi-language to Java code migration tool</description>
+    <name>PolyType Code Migrator</name>
+    <description>A comprehensive multi-language code migration platform supporting multiple target languages</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -98,7 +98,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.davajava.migrator.Main</mainClass>
+                                    <mainClass>com.polytype.migrator.Main</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

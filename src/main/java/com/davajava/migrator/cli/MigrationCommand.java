@@ -1,6 +1,7 @@
-package com.davajava.migrator.cli;
+package com.polytype.migrator.cli;
 
-import com.davajava.migrator.core.SourceLanguage;
+import com.polytype.migrator.core.SourceLanguage;
+import com.polytype.migrator.core.TargetLanguage;
 
 public class MigrationCommand {
     private String inputPath;
@@ -8,10 +9,17 @@ public class MigrationCommand {
     private String packageName;
     private String configPath;
     private SourceLanguage sourceLanguage;
+    private TargetLanguage targetLanguage = TargetLanguage.JAVA; // Default to Java
     private boolean verbose;
     private boolean recursive;
     private boolean preserveComments;
     private boolean generateJavaDoc;
+    
+    // Android-specific options
+    private boolean apkDecompile;
+    private boolean androidToWeb;
+    private boolean androidProject;
+    private String webFramework;
 
     public String getInputPath() {
         return inputPath;
@@ -83,5 +91,46 @@ public class MigrationCommand {
 
     public void setGenerateJavaDoc(boolean generateJavaDoc) {
         this.generateJavaDoc = generateJavaDoc;
+    }
+    
+    public TargetLanguage getTargetLanguage() {
+        return targetLanguage;
+    }
+    
+    public void setTargetLanguage(TargetLanguage targetLanguage) {
+        this.targetLanguage = targetLanguage;
+    }
+    
+    // Android-specific getters and setters
+    public boolean isApkDecompile() {
+        return apkDecompile;
+    }
+    
+    public void setApkDecompile(boolean apkDecompile) {
+        this.apkDecompile = apkDecompile;
+    }
+    
+    public boolean isAndroidToWeb() {
+        return androidToWeb;
+    }
+    
+    public void setAndroidToWeb(boolean androidToWeb) {
+        this.androidToWeb = androidToWeb;
+    }
+    
+    public boolean isAndroidProject() {
+        return androidProject;
+    }
+    
+    public void setAndroidProject(boolean androidProject) {
+        this.androidProject = androidProject;
+    }
+    
+    public String getWebFramework() {
+        return webFramework;
+    }
+    
+    public void setWebFramework(String webFramework) {
+        this.webFramework = webFramework;
     }
 }

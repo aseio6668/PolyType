@@ -1,35 +1,77 @@
-# DavaJava (lang2j) Code Migrator
+# PolyType Code Migrator
 
-A comprehensive, enterprise-grade multi-language code migration platform that translates source code from various programming languages into Java, with revolutionary Android-to-web migration capabilities.
+A revolutionary, enterprise-grade multi-language code migration platform that translates source code between any programming languages, supporting 15+ input languages and 12+ target languages, with breakthrough Android-to-web migration capabilities and comprehensive project workflow automation.
 
-## Supported Languages
+🚀 **NEW**: Advanced Python Support, Comprehensive Script Analysis & Generation, Cross-Platform Build Automation
 
-### Core Languages (12+ languages supported)
-- **Rust** (.rs) - Complete function parsing and translation
-- **Crystal** (.cr) - Class and method parsing with type mapping
-- **C** (.c) - Structs, functions, pointers, and preprocessor directives
-- **C++** (.cpp, .cc, .cxx) - Classes, namespaces, STL, templates, and inheritance
-- **Python** (.py) - Classes, functions, control flow, and expressions
-- **C#** (.cs) - Properties, generics, LINQ, namespaces, and using statements
-- **Kotlin** (.kt) - Data classes, extension functions, null safety, and coroutines
-- **Scala** (.scala) - Case classes, traits, objects, and pattern matching
-- **JavaScript/TypeScript** (.js/.ts) - ES6+, classes, arrow functions, async/await
-- **Go** (.go) - Structs, interfaces, goroutines, channels, and error handling
-- **Swift** (.swift) - Protocols, enums, optionals, structs, and closures
+## 🌟 Key Features
 
-### Revolutionary Android Migration
-- **APK Decompiler** - Extract structured Java code from Android APK files
+- **🔄 Any-to-Any Translation**: 15+ source languages to 12+ target languages
+- **🛠️ Complete Project Migration**: Scripts, build systems, CI/CD, and workflows
+- **📱 Mobile-to-Web**: Android APK to Progressive Web App conversion
+- **🐍 Advanced Python**: Type inference, decorators, context managers, async/await
+- **🔧 Build System Intelligence**: Makefile, CMake, Maven, Gradle, npm, Cargo analysis
+- **💻 Cross-Platform Scripts**: Automatic .sh/.bat generation for any platform
+- **🎯 Enterprise-Ready**: Production-grade code generation with error handling
+
+## Multi-Target Translation Matrix
+
+### Source Languages (15+ supported)
+PolyType can parse and understand these input languages with advanced semantic analysis:
+- **Python** (.py) - Type hints, decorators, context managers, async/await, dataclasses
+- **JavaScript/TypeScript** (.js/.ts) - ES6+, React/Vue/Angular, Node.js, async patterns
+- **Rust** (.rs) - Ownership, lifetimes, traits, macros, async/await
+- **C** (.c) - Structs, functions, pointers, preprocessor directives, memory management
+- **C++** (.cpp, .cc, .cxx) - Modern C++17/20, STL, templates, RAII, smart pointers
+- **Swift** (.swift) - Protocols, optionals, closures, property wrappers, SwiftUI
+- **PHP** (.php) - Modern PHP 8+, strict typing, namespaces, composer packages
+- **Ruby** (.rb) - Blocks, metaprogramming, gems, Rails patterns
+- **Java** (.java) - Enterprise patterns, Spring Boot, Maven/Gradle projects
+- **C#** (.cs) - .NET Core, LINQ, async/await, Entity Framework
+- **Go** (.go) - Goroutines, channels, modules, error handling patterns
+- **Kotlin** (.kt) - Coroutines, null safety, extension functions, Android development
+- **Scala** (.scala) - Functional programming, case classes, pattern matching
+- **Crystal** (.cr) - Ruby-like syntax with compile-time type checking
+- **Objective-C** (.m/.h) - Foundation, UIKit, memory management
+
+### Target Languages (12+ supported)
+PolyType can generate clean, idiomatic code in these target languages:
+
+- **Java** (.java) - Enterprise-grade Java with Spring Boot, Maven/Gradle integration
+- **Python** (.py) - Modern Python 3.10+ with type hints, dataclasses, async/await
+- **C++** (.cpp/.h) - Modern C++17/20 with smart pointers, STL, and CMake
+- **JavaScript** (.js) - ES6+ with React/Vue/Angular support and npm integration
+- **TypeScript** (.ts) - Strongly-typed TypeScript with interfaces and decorators
+- **C#** (.cs) - .NET Core compatible with async/await and Entity Framework
+- **Go** (.go) - Idiomatic Go with goroutines, channels, and modules
+- **Rust** (.rs) - Memory-safe Rust with ownership, lifetimes, and Cargo
+- **Kotlin** (.kt) - Modern Kotlin with coroutines, null safety, and Android support
+- **Swift** (.swift) - iOS/macOS Swift with SwiftUI and Swift Package Manager
+- **PHP** (.php) - Modern PHP 8+ with strict typing and Composer packages
+- **Ruby** (.rb) - Idiomatic Ruby with Rails patterns and Bundler integration
+
+### 🛠️ Revolutionary Build System & Script Analysis
+- **Universal Script Parser** - Analyzes Makefiles, CMake, package.json, pom.xml, Cargo.toml, etc.
+- **Cross-Platform Script Generation** - Automatic .sh and .bat creation for any platform
+- **Build System Migration** - Converts between Maven ↔ Gradle ↔ npm ↔ CMake ↔ Cargo
+- **CI/CD Pipeline Translation** - GitHub Actions, GitLab CI, Jenkins automation
+- **Dependency Management** - Intelligent dependency mapping across ecosystems
+- **Project Workflow Analysis** - Understands and replicates complex build processes
+
+### 🚀 Revolutionary Android Migration
+- **APK Decompiler** - Extract structured source code from Android APK files
 - **Android Studio Projects** - Complete project parsing and conversion
-- **Android-to-JavaScript** - Mobile app to web application migration
+- **Android-to-Web** - Mobile app to Progressive Web App migration
 
-## Features
+## 🎯 Features
 
-### Core Migration Capabilities
-- **12+ Programming Languages**: Comprehensive support for modern and legacy languages
-- **AST-based Translation**: Advanced Abstract Syntax Tree parsing for accurate code analysis
-- **Extensible Architecture**: Plugin-based system for adding new language support
-- **Intelligent Type Mapping**: Smart type inference and conversion between languages
-- **GUI Translation Framework**: Convert desktop GUI applications to Java Swing/JavaFX
+### Core Multi-Target Capabilities
+- **Any-to-Any Translation**: Translate between any supported source and target language combination
+- **12+ Source Languages**: Comprehensive support for modern and legacy programming languages  
+- **10+ Target Languages**: Generate idiomatic code in multiple target platforms
+- **AST-based Translation**: Advanced Abstract Syntax Tree parsing for semantic preservation
+- **Intelligent Type Mapping**: Smart type inference and conversion between language paradigms
+- **Cross-Platform Output**: Generate code for different platforms from a single source
 
 ### Revolutionary Android Features
 - **APK Decompilation**: Extract and reconstruct Java source code from Android APK files
@@ -66,67 +108,144 @@ quick-build.bat
 
 ### Basic Usage
 
-#### Standard Language Migration
-```cmd
-# Migrate a single file
-java -jar davajava-migrator.jar -i example.rs -o output/ -l rust
-java -jar davajava-migrator.jar -i app.kt -o java-src/ -l kotlin
-java -jar davajava-migrator.jar -i main.go -o output/ -l go
+#### 🔄 Multi-Target Language Migration
+```bash
+# Translate Python to Java with full project analysis
+java -jar polytype-migrator.jar -i python-project/ -o java-output/ -l python -t java --analyze-scripts
 
-# Migrate entire directory recursively
-java -jar davajava-migrator.jar -i src/ -o java-src/ -r -p com.myproject
+# Translate Rust to TypeScript with build system
+java -jar polytype-migrator.jar -i rust-app/ -o ts-app/ -l rust -t typescript --generate-scripts
 
-# Multi-language project migration
-java -jar davajava-migrator.jar -i mixed-project/ -o java-output/ -r --auto-detect
+# Cross-language compilation to multiple targets
+java -jar polytype-migrator.jar -i src/ -o output/ -l python -t cpp,java,javascript --multi-target
+
+# Enterprise migration with full workflow analysis
+java -jar polytype-migrator.jar -i legacy-project/ -o modern-project/ --analyze-project --generate-ci-cd
 ```
 
-#### Android Migration
-```cmd
-# Decompile APK to Java
-java -jar davajava-migrator.jar --apk-decompile app.apk -o decompiled-java/
+#### 🛠️ Build System & Script Analysis
+```bash
+# Analyze entire project structure and scripts
+java -jar polytype-migrator.jar --analyze-project ./my-project/
 
-# Convert APK to JavaScript web app
-java -jar davajava-migrator.jar --android-to-web app.apk -o webapp/ --framework react
+# Convert Python project to Java with Maven
+java -jar polytype-migrator.jar -i python-app/ -o java-app/ -l python -t java --build-system maven
 
-# Parse Android Studio project
-java -jar davajava-migrator.jar --android-project ./MyAndroidApp -o converted/ --target web
+# Generate cross-platform scripts for any project
+java -jar polytype-migrator.jar --generate-scripts --target-platform cross --language java
+
+# Migrate build system: npm to Maven
+java -jar polytype-migrator.jar --migrate-build-system --from npm --to maven -i nodejs-project/
+
+# Create CI/CD pipelines for target language
+java -jar polytype-migrator.jar --generate-ci-cd --platform github-actions --language rust -o .github/workflows/
 ```
 
-### Command Line Options
+#### 🐍 Advanced Python Analysis & Generation
+```bash
+# Advanced Python migration with type inference
+java -jar polytype-migrator.jar -i python-app/ -o java-app/ -l python -t java --python-type-inference
+
+# Modernize Python code to latest standards
+java -jar polytype-migrator.jar -i old-python/ -o modern-python/ -l python -t python --modernize
+
+# Convert Python decorators and context managers
+java -jar polytype-migrator.jar -i python-src/ -o java-src/ -l python -t java --preserve-decorators --handle-context-managers
+
+# Migrate async/await patterns
+java -jar polytype-migrator.jar -i async-python/ -o java-reactive/ -l python -t java --convert-async-patterns
+```
+
+#### 📱 Android Migration & Decompilation
+```bash
+# Decompile APK to structured source code
+java -jar polytype-migrator.jar --apk-decompile app.apk -o decompiled/ -t java
+
+# Convert APK to React Progressive Web App  
+java -jar polytype-migrator.jar --android-to-web app.apk -o webapp/ --framework react
+
+# Parse Android Studio project and convert to web
+java -jar polytype-migrator.jar --android-project ./MyAndroidApp -o web-output/ -t javascript
+```
+
+### 📋 Command Line Options
 
 #### Core Options
 - `-i, --input`: Input file or directory to migrate (required)
 - `-o, --output`: Output directory for generated files (required)  
-- `-l, --language`: Source language (rust, crystal, c, cpp, python, csharp, kotlin, scala, javascript, typescript, go, swift)
-- `-p, --package`: Java package name for generated classes
+- `-l, --language`: Source language (python, javascript, rust, c, cpp, swift, php, ruby, java, csharp, go, kotlin, scala, crystal, objective-c)
+- `-t, --target`: Target language (java, python, cpp, javascript, typescript, csharp, go, rust, kotlin, swift, php, ruby)
+- `-p, --package`: Package/namespace name for generated classes
 - `-r, --recursive`: Process directories recursively
 - `-v, --verbose`: Enable verbose logging
 
-#### Android-Specific Options
-- `--apk-decompile`: Decompile APK file to structured Java code
+#### 🛠️ Build System & Script Options
+- `--analyze-project`: Analyze entire project structure including scripts
+- `--analyze-scripts`: Parse and analyze build scripts (Makefile, CMake, package.json, etc.)
+- `--generate-scripts`: Generate cross-platform build scripts (.sh/.bat)
+- `--generate-ci-cd`: Create CI/CD pipeline configurations
+- `--build-system`: Target build system (maven, gradle, cmake, npm, cargo)
+- `--migrate-build-system`: Convert between build systems
+- `--target-platform`: Target platform (linux, windows, macos, cross)
+- `--preserve-workflow`: Maintain original project workflow patterns
+
+#### 🐍 Advanced Python Options
+- `--python-type-inference`: Enable comprehensive Python type inference
+- `--preserve-decorators`: Maintain Python decorators in target language
+- `--handle-context-managers`: Convert Python context managers appropriately
+- `--convert-async-patterns`: Translate async/await to target language equivalents
+- `--modernize`: Upgrade Python code to latest standards
+- `--python-version`: Target Python version (3.8, 3.9, 3.10, 3.11)
+
+#### 📱 Android-Specific Options
+- `--apk-decompile`: Decompile APK file to structured source code
 - `--android-to-web`: Convert Android app to web application
 - `--android-project`: Parse Android Studio project
-- `--framework`: Target web framework (react, vue, angular, vanilla) for Android-to-web conversion
+- `--framework`: Target web framework (react, vue, angular, svelte, vanilla)
+- `--pwa`: Generate Progressive Web App with service workers
 
-#### Advanced Options
-- `--preserve-comments`: Preserve original comments
-- `--generate-javadoc`: Generate JavaDoc comments
-- `--auto-detect`: Automatically detect source language
-- `-c, --config`: Configuration file path
-- `--gui-framework`: Target GUI framework for desktop app conversion
-- `--pwa`: Generate Progressive Web App when converting Android apps
+#### 🎯 Advanced Options
+- `--preserve-comments`: Preserve original source code comments
+- `--generate-documentation`: Generate comprehensive documentation
+- `--auto-detect`: Automatically detect source language and build system
+- `--config`: Configuration file path for custom settings
+- `--output-format`: Code formatting style (google, airbnb, standard)
+- `--dependency-analysis`: Analyze and map dependencies to target ecosystem
+- `--security-scan`: Perform security analysis during migration
+- `--performance-optimize`: Apply target language performance optimizations
 
-## Architecture
+## 🏗️ Architecture
 
-### Core Components
+### 🔧 Core Components
 
-- **Parser Interface**: Extensible parsing system supporting 12+ programming languages
-- **AST Nodes**: Common Abstract Syntax Tree representation with 25+ node types
-- **Translator Interface**: Pluggable translation system with visitor pattern implementation
-- **CLI Framework**: Apache Commons CLI-based command line interface
-- **File Generator**: Advanced Java/JavaScript source code generation and output management
+- **Enhanced Parser Interface**: Extensible parsing system supporting 15+ programming languages with semantic analysis
+- **Advanced AST System**: Common Abstract Syntax Tree representation with 40+ node types and type inference
+- **Multi-Target Translator**: Pluggable translation system with visitor pattern supporting 12+ output languages
+- **Script Analysis Engine**: Universal script parser for build systems, CI/CD, and project workflows  
+- **Cross-Platform Generator**: Intelligent .sh/.bat script generation with platform detection
+- **Project Migration Engine**: Complete project structure analysis and workflow preservation
+- **CLI Framework**: Enhanced command line interface with comprehensive project analysis
 
-### Android Migration Architecture
+### 🐍 Advanced Python Analysis Architecture
+
+- **Enhanced Python Parser**: Modern Python 3.8+ with type hints, dataclasses, async/await support
+- **Python Type Inference Engine**: Comprehensive static and dynamic type analysis
+- **Decorator Analysis System**: Full decorator pattern recognition and translation
+- **Context Manager Handler**: Complete support for with statements and async context managers
+- **Async/Await Translator**: Converts Python coroutines to target language patterns
+- **Python Advanced Constructs**: Handles f-strings, walrus operator, pattern matching
+
+### 🛠️ Build System & Script Architecture
+
+- **Universal Script Analyzer**: Parses 15+ script types (Makefile, CMake, package.json, pom.xml, etc.)
+- **Cross-Platform Script Generator**: Intelligent .sh/.bat generation with full compatibility
+- **Build System Migration Engine**: Converts between Maven ↔ Gradle ↔ npm ↔ CMake ↔ Cargo
+- **CI/CD Pipeline Generator**: Creates GitHub Actions, GitLab CI, Jenkins configurations
+- **Dependency Analysis Engine**: Maps dependencies across different ecosystems
+- **Project Workflow Analyzer**: Understands and replicates complex build processes
+- **Embedded Language Detection**: Identifies and handles mixed-language projects
+
+### 📱 Android Migration Architecture
 
 - **APK Decompiler**: DEX bytecode analysis and Java reconstruction
 - **DexDecompiler**: Dalvik Virtual Machine bytecode to source code conversion  
@@ -136,7 +255,7 @@ java -jar davajava-migrator.jar --android-project ./MyAndroidApp -o converted/ -
 - **AndroidAPIMapper**: API translation (SharedPreferences→localStorage, etc.)
 - **JavaScriptGenerator**: Multi-framework web application generation
 
-### UI/API Translation Engine
+### 🎨 UI/API Translation Engine
 
 - **GUI Framework Detection**: Automatic detection of Tkinter, Qt, WPF, Win32, etc.
 - **Component Mapping**: 50+ UI component translations

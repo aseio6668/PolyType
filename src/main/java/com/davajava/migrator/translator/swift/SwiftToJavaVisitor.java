@@ -387,7 +387,7 @@ public class SwiftToJavaVisitor implements ASTVisitor {
             output.append("// TODO: Convert Swift closures to Java lambdas\n");
         }
         
-        if (!\"void\".equals(node.getReturnType()) && !node.getReturnType().contains("throws")) {
+        if (!"void".equals(node.getReturnType()) && !node.getReturnType().contains("throws")) {
             indent();
             output.append("return ").append(getDefaultValue(node.getReturnType())).append(";\n");
         } else {

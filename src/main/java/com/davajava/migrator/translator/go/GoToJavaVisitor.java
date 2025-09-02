@@ -293,7 +293,7 @@ public class GoToJavaVisitor implements ASTVisitor {
             output.append("// TODO: Convert Go error handling to Java exceptions\n");
         }
         
-        if (!\"void\".equals(node.getReturnType())) {
+        if (!"void".equals(node.getReturnType())) {
             indent();
             output.append("return ").append(getDefaultValue(node.getReturnType())).append(";\n");
         } else {
